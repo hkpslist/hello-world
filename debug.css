@@ -1,0 +1,13 @@
+*{
+  font-family:'宋体';
+  font-size:12px;
+}
+body{
+  margin:0px;
+}
+fieldset{
+  width:60%;
+}
+label{
+background:red;
+}

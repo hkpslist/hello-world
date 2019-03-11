@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf8">
+  <title>document.forms对象</title>
+  <script type="text/javascript">
+     function clickform2()
+	 {
+		 alert(""+document.forms[1].action);
+		 alert(""+document.getElementsByName("form2")[0].action);
+		 alert(""+document.form2.action);
+	 }
+  </script>
+ </head>
+ <body>
+  <div>
+    <p>
+	  <span>表单一</span>
+	  <div style="border:1px solid red">
+	    <form action="1.asp" method="post" name="form1">
+		  <span>用户名</span>
+		  <input type="text" />
+		  <span>密码</span>
+		  <input type="password" />
+		</form>
+	  </div>
+	</p>
+	<p>
+		<span>表单二</span>
+		<div style="border:1px solid blue">
+			<form action="2.asp" method="post" name="form2">
+				<span>用户名：</span>
+				<input type="text" />
+				<span>密码：</span>
+				<input type="text" />
+			</form>
+		</div>
+	</p>
+  </div>
+  <div><input type="button" value="点击获取FORM2参数" onclick="clickform2();" /></div>
+
+<textarea name="" id="" cols="30" rows="10">
+   通过document.forms[index] 来获取表单
+   例如：document.form3[1].action  获取第2个表单的action 
+</textarea>
+ </body>
+</html>

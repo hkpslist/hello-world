@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>ajax json</title>
+  <script type="text/javascript">
+    //创建xmlhttprequest对象
+     var xmlrequest = new XMLHttpRequest();
+	 json=null;
+
+       	 //打印出城市
+	 function displyacity(v)
+	 {
+		var vl = document.getElementById("sf").value;
+		var str="<option value=''>请选择</option>";
+		for(var i=0;i<v.length;i++)
+		 {   
+			 if(v[i].province==vl)
+			 {
+               for(var j=0;j<v[i].city.length;j++)
+				 {
+			str=str+"<option value="+v[i].city[j]+">"+v[i].city[j]+"</option>"; 
+				 }
+				 break;
+			 }
+		 }
+		 document.getElementById("ds").innerHTML=str;
+	 }
+	 //打印出省份
+	 function displayprovince(v)
+	 {
+        var str="<option value=''>请选择</option>";
+
+		for(var i=0;i<v.length;i++)
+		 {
+			 str=str+"<option value="+v[i].province+">"+v[i].province+"</option>";
+		 }
+		 //alert(str);
+		 document.getElementById("sf").innerHTML=str;
+		 //document.getElementById("sf").onchange= displyacity(v);
+		 
+	 }
+	
+
+	 //增加xmlrequest事件
+	 xmlrequest.onreadystatechange=function()
+	 {
+		 if(xmlrequest.readyState==4 && xmlrequest.status==200)
+		 {
+			 //调用函数
+			 var val = xmlrequest.responseText;
+			 json = eval("("+val+")");
+			 displayprovince(json);
+			 //document.getElementById("sf").onchange= displyacity(json);
+	     }
+	 }
+
+
+	 window.onload=function()
+	 {
+		 xmlrequest.open("POST","json.php",true);
+         xmlrequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		 xmlrequest.send();
+	     document.getElementById("sf").onchange= function(){displyacity(json)};
+	 }
+   		
+  </script>
+</head>
+<body> 
+  <h1 align='center'>JSON</h1>
+  <hr width=50%>
+ <div class="div1" style="text-align:center"><select name="sf" id="sf"><option value="">请选择</option>
+</select><select name="ds" id="ds"><option value="">请选择</option></select>
+</div>
+</body>
+</html>

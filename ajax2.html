@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>BBS</title>
+<style type="text/css">
+*{font-family:"宋体";font-size:12px;position:relative}
+   #contain{text-align:center;margin:30px auto;height:400px;width:600px}
+     #accent{position:relative;height:100%;width:100%;overflow-x:hidden;overflow-y:hidden;margin:10px 0px}
+       #content{position:relative;width:598px;height:auto;margin:10px 0px;border:1px solid red}
+	     #title{position:relative;width:100%;height:20px;text-align:left;background:pink;line-height:22px;margin:0px 0px}
+		 #message{position:relative;background:white;whidth:100%;height:auto;text-align:left;margin:5px 0px;text-indent:2em}
+	 #send{position:relative;background:white;margin:0px 0px}
+	 #send-mes{position:relative;width:100%;margin:10px 0}
+	 #send-ok{width:100%;margin:10px 0px}
+
+.tl{
+   width:100%;
+   text-align:left;
+   	border-width: 1px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+	height:20px;
+	line-height:22px;
+	font-size:16px;
+}
+#tex
+{
+  height:60px;
+  width:99.3%
+}
+</style>
+<script type="text/javascript" src="http://www.coding123.net/getip.ashx?js=1">
+//javascript获取IP地址
+</script>
+<script type="text/javascript" src="shortcut.js">
+//javascript获取键盘快捷键
+</script>
+<script type="text/javascript">
+   //2015-09-04 23:12:09
+   function formattime()
+   {
+	   var d = new Date();
+	   var y = d.getFullYear();
+	   var m = d.getMonth()+1;
+	   var day = d.getDate();
+	   var h = d.getHours();
+	   var min = d.getMinutes();
+	   var s = d.getSeconds();
+	   var str = y+"-"+m+"-"+day+" "+h+":"+min+":"+s;
+	   return str;
+   }
+   function getmessage()
+   {
+	  
+      var message = document.getElementById("tex").value;
+	  
+	  var par = document.getElementById("accent");//第一父节点
+
+	  var par1 = document.createElement("div");
+	  par1.setAttribute("id","content");
+
+	  var par2 = document.createElement("div");
+	  par2.setAttribute("id","title");
+
+	  var par3 = document.createElement("div");
+	  par3.setAttribute("id","message");
+      var textmessage = document.createTextNode(message);
+	  var texttitle = document.createTextNode(ip.replace("|","IP地址：")+"  时间："+formattime());
+	  
+	  par2.appendChild(texttitle);
+	  par3.appendChild(textmessage);
+
+	  par1.appendChild(par2);
+	  par1.appendChild(par3);
+      
+	  par.appendChild(par1);
+	  //让滚动条最后面
+     document.getElementById("accent").scrollTop=document.getElementById("accent").scrollHeight;
+	
+   }
+
+   	function sendmessage()
+	   {
+		   if(document.getElementById("tex").value)
+		   {
+		    document.getElementsByClassName("tl")[1].innerHTML="<div class='tl'>发送信息：</div>";
+		    getmessage();
+		   }
+		   else
+		   {
+			   document.getElementsByClassName("tl")[1].innerHTML="<font color=red><div class='tl'>发送信息：</div></font>";
+		   }
+			   document.getElementById("tex").value="";
+			   document.getElementById("tex").focus(); 
+	 }
+
+   window.onload=function(){
+
+	   shortcut.add("Ctrl+Enter",function()
+	   {
+		   sendmessage();
+	   },{'type':'keydown',
+	      'propagate':true,
+		  'target':document});
+
+	   document.getElementById("ok").onclick=function()
+	   {
+          sendmessage();
+	   };
+};
+</script>
+</head>
+<body>
+<div id="contain">
+	<div class="tl">接收信息：</div>
+	<div id="accent">
+	</div>
+	<div id="send">
+	   <div class="tl">发送信息：</div>
+	   <div id="send-mes">
+	      <textarea id="tex"></textarea>
+	   </div>
+	   <div id="send-ok"><button id="ok" style="width" autofocus="autofocus">发送</button></div>   
+	 </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+<script type="text/javascript">
+/*使用xml文件做为数据来源city.xml文件,只适合本地XML 文件加载
+*/
+function getxmldoc(filename)
+{
+ var xmlDoc;
+ try //Internet Explorer
+  {
+	xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+	xmlDoc.async=false;
+	xmlDoc.load(filename);
+  }
+  catch(e){
+    try //Firefox, Mozilla, Opera, etc.
+	{
+		xmlDoc=document.implementation.createDocument("","",null);
+		xmlDoc.async=false;
+	    xmlDoc.load(filename);
+	}catch(e) {
+	}
+  }
+return(xmlDoc);
+}
+</script>
+
+<style type="text/css">
+  .div1
+  {
+     text-align:center;
+	 margin:30px,auto;
+  }
+</style>
+</head>
+<body>
+<h1 align="center">级联菜单</h1>
+<hr width=50%>
+<div class="div1"><select name="sf" id="sf"><option value="">请选择</option>
+</select><select name="ds" id="ds"><option value="">请选择</option></select></div>
+</body>
+<script>
+  var xmldoc = getxmldoc("city.xml");
+  var xmlprovince = xmldoc.getElementsByTagName("province");
+  var sf = document.getElementById("sf");
+  var ds = document.getElementById("ds");
+  for(var i=0;i<xmlprovince.length;i++)
+  {
+	  n2 = document.createElement("option");
+	  n3 = document.createAttribute("value");
+	  n2.setAttributeNode(n3);
+	  n2.setAttribute("value",xmlprovince[i].getAttribute("name"));
+	  n1 = document.createTextNode(xmlprovince[i].getAttribute("name"));
+	  n2.appendChild(n1);
+	  sf.appendChild(n2);
+  }
+  sf.onchange=function()
+  {
+	  var sfvalue = sf.value;
+	  var sfnode;
+	  for(var j=0;j<xmlprovince.length;j++)
+	  {
+		  if(xmlprovince[j].getAttribute("name")==sfvalue)
+		  {
+			  sfnode = xmlprovince[j];
+			  break;
+		  }
+	  }
+	  //
+	  
+	  var str ="<option value=''>请选择</option>";
+	  for(var k=0;k<sfnode.childNodes.length;k++)
+	  {
+           str=str+"<option value='"+sfnode.childNodes[k].firstChild.nodeValue+"'>"+sfnode.childNodes[k].firstChild.nodeValue+"</option>";
+	  }
+	  ds.innerHTML=str;  
+  }
+
+</script>
+</html>

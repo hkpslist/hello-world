@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="content-type" content="text/html;charset=utf8">
+    <title>javascript 弹出窗口</title>
+    <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
+    <script type="text/javascript">
+        function myconfirm(a) {
+            let str = "FALSE";
+            if (window.confirm(a)) {
+                str = "TRUE";
+            }
+            document.getElementById("confirmmsg").innerHTML = str;
+        }
+
+        function myprompt(a, b) {
+            var age = window.prompt(a, b);
+            document.getElementById("promptmsg").innerHTML = age;
+        }
+
+    </script>
+</head>
+
+<body>
+    <nav class="navb navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">JS</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a>Home</a></li>
+                    <li><a>Love</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">javascript 弹出窗口</h2>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    window.alert('love") <button class="btn btn-primary" onclick="javascript:alert('Love')">Click Me</button>
+                </li>
+                <li class="list-group-item">
+                    window.confirm('love ?")
+                    <span id='confirmmsg' style="color: red;"></span>
+                    <button class="btn btn-primary" onclick="javascript:myconfirm('Do you love me ?')">Click Me</button>
+                </li>
+                <li class="list-group-item">
+                    window.prompt('love ?") <span id='promptmsg' style="color: red; margin-right: 5px;"></span><button class="btn btn-primary" onclick="javascript:myprompt('Input you age...')">Click Me</button>
+                </li>
+                <li class="list-group-item">
+                    window.open('....')
+                    <button class="btn btn-primary" onclick="javascript:window.open('http://www.hn-eip.cn')">Click Me</button>
+                </li>
+                <li class="list-group-item">
+                    window.close()
+                    <button class="btn btn-primary" onclick="javascript:window.close()">Click Me</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<title></title>
+	<mete http-equiv="content-type" content="text/html;charset=utf-8" /> 
+	<script type="text/javascript" src="/js/my.js">
+	</script>
+	<style type="text/css" src="/css/my.css">
+		
+	</style>
+
+	</head>
+	<body>
+	爱生活
+<div id="div1" class="">
+	love love
+</div>
+    <input type="button" value="chick me" onclick="showtext();">
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+  <style type="text/css">
+  *{
+    font-family:"宋体";
+	font-size:12px;
+  }
+   div{
+      height:200px;
+	  width:200px;
+	  border:1px solid blue;
+	  float:left;
+	  margin:10px 10px;
+   } 
+   #id5,#id6,#id7,#id8
+   {
+     height:50px;
+	 width:50px
+   }
+  </style>
+  <script type="text/javascript" src="jquery.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+
+		$("#bt1").click(function(){
+		  $(".c1").css("background","yellow");
+		});
+
+		$("#bt2").click(function(){
+		  $(".c2,.c3").css("background","red");
+		});
+
+		$("#bt3").click(function(){
+		  $("p").css("background","black");
+		});
+
+		$("#bt4").click(function(){
+		  $(".c1").css("border","solid 1px red");
+
+		});
+	});
+  </script>
+</head>
+<body>
+  <div class="c1">class=c1
+  <p>
+  <ol>
+  <li>li11</li>
+  <li>li12</li>
+  <li>li13</li>
+  </ol>
+  <ul>
+  <li>li21</li>
+  <li>li22</li>
+  <li>li23</li>
+  <li>li24</li>
+  </ul>
+  </p>
+  <p>p1</p>
+  <p>p2</p>
+  </div>
+  <div class="c2">class=c2</div>
+  <div class="c3">class=c3</div>
+  <div class="c4">class=c4</div>
+  <div class="c1">class=c1</div>
+
+  <div class="c2">class=c2
+    <div id="id5">id=id4</div>
+    <div id="id6">id=id5</div>
+    <div id="id7">id=id6</div>
+    <div id="id8">id=id8</div>
+  </div>
+  <div class="c3">class=c3<spa>id=id2</spa>
+    <P>
+	   <h5>创造无限,品质致远</h5>
+	   <p>湖南创远集团有限公司、创远置业有限公司、中大创远数控装备有限公司</p>
+	</P>
+  </div>
+  <div class="c4">class=c4</div>
+
+  <div id="id4">
+  	<input type="button" value="ck1" id="bt1" />
+  	<input type="button" value="ck2" id="bt2" />
+  	<input type="button" value="ck3" id="bt3" />
+  	<input type="button" value="ck4" id="bt4" />
+  	<input type="button" value="ck5" id="bt5" />
+  	<input type="button" value="ck6" id="bt6" />
+  	<input type="button" value="ck7" id="bt7" />
+  	<input type="button" value="ck8" id="bt8" />
+  	<input type="button" value="ck9" id="bt9" />
+  	<input type="button" value="ck10" id="bt10" />
+  </div>
+</body>
+</html>

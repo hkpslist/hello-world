@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+ <head>
+ <meta http-equiv="content-type" content="text/html;charset=utf-8"> <title>test3</title>
+ </head>
+ <body>
+<div class="div1">
+	<p>
+	    <p>
+		<span>你的爱好很广泛</span>
+		</p>
+		<input type="checkbox" name="ck1" id="ck1"/>
+		<span>全选/全不选</span><br/>
+		<input type="checkbox" name="ck2"/>
+		<span>足球</span>
+		<input type="checkbox" name="ck2"/>
+		<span>篮球</span>
+		<input type="checkbox" name="ck2"/>
+		<span>游泳</span>
+		<input type="checkbox" name="ck2"/>
+		<span>唱歌</span><br/>
+		<input type="button" value="全选" id="sall"/>
+		<input type="button" value="全不选" id="nall"/>
+		<input type="button" value="反选" id="uall"/>
+	</p>
+</div>
+<script type="text/javascript">
+{
+	var ck1 = document.getElementById("ck1");
+	ck1.onclick=function()
+	{
+		var ck2s = document.getElementsByName("ck2");
+		for(var i=0;i<ck2s.length;i++)
+		{
+	          ck1.checked?ck2s[i].checked=true:ck2s[i].checked=false;
+		}
+	};
+	var sall = document.getElementById("sall");
+	sall.onclick=function()
+	{
+		var ck2s = document.getElementsByName("ck2");
+		for(var i=0;i<ck2s.length;i++)
+		{
+	          ck2s[i].checked=true;
+		}
+	}
+	var nall = document.getElementById("nall");
+    nall.onclick=function()
+	{
+		var ck2s = document.getElementsByName("ck2");
+		for(var i=0;i<ck2s.length;i++)
+		{
+	          ck2s[i].checked=false;
+		}
+	}
+	var uall = document.getElementById("uall");
+		uall.onclick=function()
+	{
+		var ck2s = document.getElementsByName("ck2");
+		for(var i=0;i<ck2s.length;i++)
+		{
+          ck2s[i].checked?ck2s[i].checked=false:ck2s[i].checked=true;
+		}
+	}
+}
+</script>
+ </body>
+</html>

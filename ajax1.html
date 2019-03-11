@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html;charset=utf-8">
+  <title></title>
+  <style type="text/css">
+    .div1{
+	  text-align:center;
+	}
+  </style>
+  <script type="text/javascript">
+    //创建XMLHttpRequest对象
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+
+		//监听xmlhttprequest对象
+		xmlhttp.onreadystatechange=function()
+		{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		 //获取返回数据并处理 xmlhttprequest.responseText||responseXML
+            document.getElementById("result").innerHTML = xmlhttp.responseText; 
+		}
+		}
+  </script>
+</head>
+<body>
+<div class="div1">
+	<h1>检测用户名是否存在</h1>
+	<hr width="50%" />
+	<p><span>输入测试值：</span><input type="text" id="username"/><span id="result"></span></p>
+</div>
+<script type="text/javascript">
+	   //打开远程连接，发送数据（post）
+	   document.getElementById("username").oninput = function() {
+	    var username = this.value;
+	    //xmlhttp.open("POST","ajax1.php?",true);
+		//xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		//xmlhttp.send("username="+username);
+		xmlhttp.open("GET","ajax1.php?username="+encodeURI(username)+"&times="+new Date().getTime(),true);
+		xmlhttp.send();
+	   }
+</script>
+</body>
+</html>

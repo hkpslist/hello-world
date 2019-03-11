@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>baidumap</title>
+  <style type="text/css">
+	#div1,#div2{
+	   height:200px;
+	   width:600px;
+	   border:1px solid red;
+	}
+  </style>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=15&ak=WqBfOBuQl9oTFphZjTtYs1Mi">
+  </script>
+</head>
+<body>
+  <div id="div1">a</div>
+  <div id="div2">b</div>
+ <script type="text/javascript">
+var map = new BMap.Map("div1");         // 创建地图实例      
+var point = new BMap.Point(116.404, 39.915);  // 创建点坐标     
+map.centerAndZoom(point, 15);                 // 初始化地图，设置中心点坐标和地图级别     
+var traffic = new BMap.TrafficLayer();        // 创建交通流量图层实例      
+map.addTileLayer(traffic);                    // 将图层添加到地图上
+</script>
+</body>
+</html>

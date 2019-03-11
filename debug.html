@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="debug.css">
+  <script type="text/javascript" src="debug.js"></script>
+  <script type="text/javascript">
+    function display()
+	{
+        var user = document.getElementById("username").value;
+		
+        var pass = document.getElementById("password").value;
+        
+		displayvalue(Number(user),Number(pass));
+	}
+  </script>
+ </head>
+ <body>
+  <form method="post" action="" id="form1">
+      <fieldset>
+	  <legend>user information...</legend>
+	  <label for="username">username:</label> 
+	  <input type="text" id="username">
+	  <label for="password">password:</label>
+	  <input type="text" id="password">
+	  <input type="button" value="button" onclick="display();">
+	  </fieldset>
+  </form>
+ </body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+  <style type="text/css">
+  .div1
+  {
+    text-align:center;
+	border:solid 1px red;
+	height:400px;
+	width:300px;
+	margin:0px auto;
+  }
+  .div2,.div3,.div4
+  {
+   width:100px;
+   height:400px;
+   float:left;
+   text-align:center;
+   margin:0px auto;
+  }
+  select
+  {
+   height:400px;
+   width:100px;
+  }
+  button
+  {
+    float:left;
+	width:60px;
+	margin:5px auto;
+  }
+  </style>
+  <script type="text/javascript">
+    //判断o节点数组是否在s中,有则不管，无则加上（通过value属性来判断）
+	function oinserts(o,s)
+	{
+      var ls = s.childNodes;
+	  for(var i=0;i<o.length;i++)
+	{
+	  for(var j=0;j<ls.length;j++)
+	  {
+		  if(ls[j].value==o[i].value)
+		  //alert(ls[j].value);
+		  //alert(o.value);
+		  return;
+	  }
+	  s.appendChild(o[i]);
+	}
+	}
+  </script>
+</head>
+<body>  
+<div class="div1">
+	<div class="div2"><select multiple="multiple" size="10" id="s1"><option value="选项一" name="op">选项一</option><option value="选项二" name="op">选项二</option><option value="选项三" name="op">选项三</option><option value="选项四" name="op">选项四</option><option value="选项五" name="op">选项五</option><option value="选项六" name="op">选项六</option><option value="选项七" name="op">选项七</option><option value="选项八" name="op">选项八</option><option value="选项九" name="op">选项九</option><option value="选项十" name="op">选项十</option></select></div>
+	<div class="div3">
+	<button id="bt1">-></button>
+	<button id="bt2">=></button>
+	<button id="bt3"><-</button>
+	<button id="bt4"><=</button>
+	</div>
+	<div class="div4"><select multiple="multiple" size="10" id="s2">
+	</select></div>
+</div>
+<script type="text/javascript">
+
+   var r1=document.getElementById("bt1");
+   r1.onclick=function()
+   {
+	   var s1 = document.getElementById("s1");
+	   var s2 = document.getElementById("s2");
+       var ol = new Array();
+	   for(var i=0;i<s1.childNodes.length;i++)
+	   {
+		   if(s1.childNodes[i].selected)
+		   {	    
+			 ol.push(s1.childNodes[i]);
+           }
+	   }
+      oinserts(ol,s2);
+   }
+
+  var r2=document.getElementById("bt2");
+  r2.onclick=function()
+  {
+  	   var s1 = document.getElementById("s1");
+	   var s2 = document.getElementById("s2");
+       var ol = new Array();
+	   for(var i=0;i<s1.childNodes.length;i++)
+	   {    
+			 ol.push(s1.childNodes[i]);
+	   }
+      oinserts(ol,s2);
+  }
+
+ var r3=document.getElementById("bt3");
+  r3.onclick=function()
+  {
+  	   var s1 = document.getElementById("s2");
+	   var s2 = document.getElementById("s1");
+       var ol = new Array();
+	   for(var i=0;i<s1.childNodes.length;i++)
+	   {    
+		  if(s1.childNodes[i].selected)
+		   {	    
+			 ol.push(s1.childNodes[i]);
+           }
+	   }
+      oinserts(ol,s2);
+  }
+
+ var r4=document.getElementById("bt4");
+  r4.onclick=function()
+  {
+  	   var s1 = document.getElementById("s2");
+	   var s2 = document.getElementById("s1");
+       var ol = new Array();
+	   for(var i=0;i<s1.childNodes.length;i++)
+	   {    
+			 ol.push(s1.childNodes[i]);
+	   }
+      oinserts(ol,s2);
+  }
+
+  var ops = document.getElementsByName("op");
+  var s1 = document.getElementById("s1");
+  var s2 = document.getElementById("s2");
+  for(var i=0;i<ops.length;i++)
+  {
+	  ops[i].ondblclick=function()
+	  {
+		  if(this.parentNode==s1)
+		  {
+			  s2.appendChild(this);
+		  }
+		  else
+		  {
+			  s1.appendChild(this);
+		  }
+	  }
+  }
+</script>
+</body>
+</html>

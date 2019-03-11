@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+<script type="text/javascript">
+/*使用关联数组解决，数据准备（关联数组的KEY 作为省份名，
+值为一数组保存对应省份的城市）
+*/
+//var datas = new Array();
+datas ={"湖南":new Array('长沙','株洲','湘潭','邵阳'),'湖北':new Array('武汉','汉口','襄樊'),'广东':new Array('广州','东莞','佛山'),'广西':new Array('南宁','北海','柳州')};
+</script>
+
+<style type="text/css">
+  .div1
+  {
+     text-align:center;
+	 margin:30px,auto;
+  }
+</style>
+</head>
+<body>
+<h1 align="center">级联菜单</h1>
+<hr width=50%>
+<div class="div1"><select name="sf" id="sf"><option value="">请选择</option>
+</select><select name="ds" id="ds"><option value="">请选择</option></select></div>
+</body>
+<script type="text/javascript">
+//打印省份下拉选项
+var str='<option value="">请选择</option>';
+for (key in datas){
+    str=str+"<option value='"+key+"'>"+key+"</option>";
+}
+document.getElementById('sf').innerHTML=str;
+
+//定义省份改变事件，调出对应省份的城市。
+document.getElementById('sf').onchange=function()
+{
+  var str1='<option value="">请选择</option>';
+  for(var i=0;i<datas[this.value].length;i++)
+	{
+		str1=str1+"<option value='"+datas[this.value][i]+"'>"+datas[this.value][i]+"</option>";
+	}
+   document.getElementById('ds').innerHTML=str1;
+}
+</script>
+</html>

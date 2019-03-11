@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+  <style type="text/css">
+   div{
+    height:200px;
+	width:200px;
+    float:left;
+	margin:10px 5px;
+	background:yellow;
+   }
+
+  </style>
+  <script type="text/javascript" src="jquery.js">
+  </script>
+  <script type="text/javascript">
+     $(document).ready(function(){
+         $("#bt1").click(function()
+		 {
+			// $(".div1:last").css("background","blue");
+			 $("div:last").css("background","blue");
+		 });
+		 $("#bt2").click(function()
+		 {
+		     $(".div1:first").css("background","blue");
+		 });
+		 $("#bt3").click(function()
+		 {
+			 $("div:not(.div2)").css("background","blue");
+		 });
+		 $("#bt4").click(function()
+		 {
+			 $("div:even").css("background","blue");
+		 });
+	 });
+  </script>
+</head>
+<body>
+
+<div id="i1">id=div2
+  <div class="c2">class=div2</div>
+</div>
+---------------------------
+<div id="i2">id=div3 
+  <div class="div1" style="height:100px;width:100px;background:red;">class=div1
+  </div>
+  <div id="i5" style="height:50px;width:50px;background:red;">id=div5</div>
+  <div id="div6" style="height:60px;width:50px;background:red;">id=div6</div>
+</div>
+----------------------------
+<div class="c1">class=div1
+  <div id="div1">id=div1</div>
+</div>
+----------------------------
+<div class="div1">class=div1
+  <div id="div4" style="height:100px;width:100px;background:red;">id=div4
+  </div>
+</div>
+---------------------------
+<div class="div1">class=div1
+  <div class="div2" style="height:100px;width:100px;background:red;">class=div2
+  </div>
+</div>
+---------------------------
+<div class="div10" style="height:200px;width:200px;background:white">class=div1
+   <button id="bt1" value="bt1">bt1</button>
+   <button id="bt2">bt2</button>
+   <button id="bt3">bt3</button>
+   <button id="bt4">bt4</button>
+   <button id="bt5">bt5</button>
+   <button id="bt6">bt6</button>
+</div>
+----------------------------
+</body>
+</html>

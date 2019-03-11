@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+ <head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Document</title>
+<style type="text/css">
+div{
+text-align:center;
+}
+table
+{
+	font-family: verdana,arial,sans-serif;
+	font-size:16px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #dedede;
+}
+td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #666666;
+	background-color: #ffffff;
+}
+</style>
+<script type="text/javascript">
+
+</script>
+ </head>
+ <body>
+  <div class="div1">
+  	<h1>添加用户</h1>
+  	<div class="div2"><span>用户名:</span><input type="text" id="user"  value="奥巴马"/><span>E-M:</span><input type="text" value="abm@amarcan.com" /><span>电 话：</span><input type="text"  value="0989-97777"/><p></p><input type="button" value="添加" id="adds"></div>
+	<hr width=50%/>
+	<div class="div3"><table align=center id="tb1"><tr><th>用户名</th><th>E-M</th><th>电 话</th><th>操 作</th></tr><tr><td>张三丰</td><td>zsfeng@163.com</td><td>13878787654</td><td name="addline" style="cursor:pointer" onclick="delline(this)"><u>删除</u></td></tr></table>
+	</div>
+  </div>
+  <script type="text/javascript">
+    
+	//删除一行
+    function delline(a)
+	{
+		var fa=a.parentNode;
+		var fafa=fa.parentNode;
+		if(window.confirm("你确认要删除么？"))
+		{
+		 fafa.removeChild(fa);
+		}
+	}
+
+    //添加按钮事件
+	var adds = document.getElementById("adds");
+	adds.onclick=function()
+	{
+      var nodelist = this.parentNode.childNodes;
+	  var user = nodelist[1].value;
+	  var em = nodelist[3].value;
+	  var phone = nodelist[5].value;
+	  addline(user,em,phone);
+	}
+	
+    //添加数据到表里
+	function addline(user,em,phone)
+    {
+	  var newtr = document.createElement("tr");
+	  var str = "<td>"+user+"</td><td>"+em+"</td><td>"+phone+"</td><td name='addline' style='cursor:pointer' onclick='delline(this)'><u>删除</u></td>";
+	  newtr.innerHTML=str;
+	  var fathers = document.getElementById("tb1").childNodes[0];
+	  fathers.appendChild(newtr);
+    }
+  </script>
+ </body>
+</html>

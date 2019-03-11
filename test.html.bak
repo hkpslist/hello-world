@@ -1,0 +1,44 @@
+<html>
+<head>
+<meta http-equiv='content-type' content='text/html;charset=utf-8'>
+<script type="text/javascript" src="js/my.js">
+</script>
+<style type="text/css">
+body{
+font-size:12px;
+font-family:'宋体';
+background-color:yellow
+}
+#div1
+{
+  color:red;
+}
+#div2
+{
+  color:black;
+  background-color:light;
+}
+#text-box
+{
+  color:red;
+  background-color:yellow;
+}
+#prompt
+{
+  color:red;
+
+}
+</style>
+</head>
+<body>
+<div id='div1'>这里是DIV1</div>
+<div id='div2'>这里是DIV2</div>
+<img id='myimage' src="../images/lightoff.gif" onclick="changeimage();">
+<input type='button' value='显示欢迎窗口' onclick="showtext();">
+<input type='button' value='改变DIV1内容' onclick="changetext();">
+<input type='button' value='改变DIV2背景颜色' onclick="changebackground();">
+<input id='text-box' type='button' value='改变颜色' onmouseover="changecolor();" onmouseout="changecolor();">
+<input id='username' type="text" name='username' onchange="Isnumber()">
+<span id='prompt'></span>
+</body>
+</html>

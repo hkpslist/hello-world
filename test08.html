@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+ <style type="text/css">
+ *{
+  font-family:"宋体";
+  font-size:12px;
+  color:black;
+  margin:5px,auto;
+  text-align:center;
+ }
+ .head{
+  height:80px;
+  width:800px;
+  border:1px solid red;
+  line-height: 80px;
+ }
+ .mume{
+  height:40px;
+  line-height:40px;
+  width:800px;
+  border:1px solid red;
+  text-align:center;
+ }
+ .content{
+  height:400px;
+  width:800px;
+  border:1px solid red;
+  }
+ .box{
+ height:198px;
+ width:398px;
+ border:1px solid red;
+ float:left;
+ }
+ #tit1,#tit2,#tit3,#tit4{
+ height:20px;
+ width:100%;
+ border:1px solid red;
+ }
+ #body1,#body2,#body3,#body4{
+  height:178px;
+  width:100%;
+  border:1px solid red;
+ }
+ .foot{
+ height:40px;
+ width:800px;
+ border:1px solid red;
+ }
+ </style>
+ <script type="text/javascript" src="jquery.js"></script>
+ <script type="text/javascript">
+   $(document).ready(function(){
+          $("#bt1").click(function(){$(".head").css("background","red")});
+          $("#bt2").click(function(){$("#tit1,#tit2,p").css("background","red")});
+		  $("#bt3").click(function(){$("#tit1 p").css("background","red")});
+		  $("#bt4").click(function(){$("body>p").css("background","blue")});
+		  $("#bt5").click(function(){$("#tit1+div").css("background","blue")});
+   });
+ </script>
+</head>
+<body>
+  <div class="head">head</div>
+  <div class="mume">mume</div>
+  <div class="content">
+  <p>content>p</p>
+    <div class="box">
+    	<div id="tit1">title<p>title1>p</p></div>
+    	<div id="body1"><p>body1下P</p></div>
+		<p>box>p</P>
+    </div>
+    <div class="box">
+    	<div id="tit2">title</div>
+    	<div id="body2">body2下P</div>
+    </div>
+    <div class="box">
+    	<div id="tit3">title</div>
+    	<div id="body3">body3下P</div>
+    </div>
+    <div class="box">
+    	<div id="tit4">title</div>
+    	<div id="body4">
+		 <p id="p1">武松醉大老虎</p>
+		</div>
+    </div>
+  </div>
+  <div class="foot">
+   <button id="bt1" value="bt1">bt1</button>
+   <button id="bt2" value="bt2">bt2</button>
+   <button id="bt3" value="bt3">bt3</button>
+   <button id="bt4" value="bt3">bt4</button>
+   <button id="bt5" value="bt3">bt5</button>
+   <button id="bt6" value="bt3">bt6</button>
+  </div>
+  <p>body下的P</p>
+</body>
+</html>

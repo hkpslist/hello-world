@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title></title>
+  <style type="text/css">
+	.img1
+	{
+	  width:400px;
+	  height:300px;
+	  background:url("http://img5.cache.netease.com/photo/0001/2015-01-13/AFR295NA00AO0001.jpg");
+	}
+	.img2
+	{
+	  width:400px;
+	  height:300px;
+	  background:url("http://img2.cache.netease.com/photo/0001/2015-01-13/AFR290IB00AO0001.jpg");
+	}
+  </style>
+  <script type="text/javascript">
+  <!--
+  window.onload = init;
+  function init()
+  {
+    var but = document.getElementById("but");
+	but.onclick=change;
+	function change()
+	{
+		var img1 = document.getElementById("img1");
+		img1.className="img2";
+	}
+  }
+  //-->
+  </script>
+ </head>
+ <body>
+ <input type="button" value="button" id="but"/>
+ <img class="img1" id="img1" src="" width=400px height=300px />
+ </body>
+</html>

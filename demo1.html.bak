@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title></title>
+<script type="text/javascript">
+<!--
+    var a = "123";
+	var b=123;
+	var c=1;
+	//document.write (!!(false || (c=b+100)))
+	//document.write (c);
+	function getvalue(a,b)
+	{
+      //document.write ("你已经活了："+ a.value *365*24*60*60 +"秒了");
+	  //b.document.value = a.value *365*24*60*60;
+	  document.getElementById('result').value="fds";
+	  //alert('result'.document.value);
+	}
+	/*var a=prompt("请输入你的年龄：","20");
+	if (!isNaN(a*1))
+	{
+		alert("你已经活了："+ a*365*24*60*60 +"秒了");
+	}*/
+-->
+</script>
+</script>
+ </head>
+ <body>
+<form method="post" action="" name="form1">
+	<input type="text" id="uname">
+	<input type="text" id="result" disable>
+	<input type="submit" value="click" onclick="javascript:getvalue(form1.uname,form1.result);">
+</form>
+ </body>
+</html>

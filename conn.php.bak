@@ -1,0 +1,11 @@
+
+<?php
+  $con = mysql_connect("localhost","root","");
+  mysql_select_db("cdcol",$con);
+  mysql_query("utf8");
+  $result = mysql_query("select * from cds");
+  while($row = mysql_fetch_array($result))
+  {
+	  echo $row["titel"]."<br />";
+  }
+  mysql_close($con);

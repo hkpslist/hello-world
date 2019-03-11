@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>baidu map</title>
+<style type="text/css">
+ #div1{
+   height:600px;
+   width:800px
+   border:1px solid red;
+ }
+</style>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=15&ak=WqBfOBuQl9oTFphZjTtYs1Mi"></script>
+</head>
+<body>
+  <div id="div1"></div>
+<script type="text/javascript">
+  var map = new BMap.Map("div1");
+  var point = new BMap.Point(119.705911,30.24625);
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+  map.centerAndZoom(point,12);
+
+  var point = new BMap.Point(119.869533,30.258752);
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+
+  var point = new BMap.Point(119.49336,30.203585);
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+
+  var point = new BMap.Point(119.851918,30.332897);
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+
+  var point = new BMap.Point(119.79507,30.15175);
+  var marker = new BMap.Marker(point);
+  map.addOverlay(marker);
+
+ 
+
+	var polyline = new BMap.Polyline([    
+	new BMap.Point(119.705911,30.24625),    
+	new BMap.Point(119.869533,30.258752)    
+	],    
+	{strokeColor:"green", strokeWeight:6, strokeOpacity:0.5}    
+	);    
+	map.addOverlay(polyline);
+
+    var polyline = new BMap.Polyline([    
+	new BMap.Point(119.705911,30.24625),    
+	new BMap.Point(119.49336,30.203585)    
+	],    
+	{strokeColor:"green", strokeWeight:6, strokeOpacity:0.5}    
+	);    
+	map.addOverlay(polyline);
+
+	var polyline = new BMap.Polyline([    
+	new BMap.Point(119.705911,30.24625),    
+	new BMap.Point(119.851918,30.332897)    
+	],    
+	{strokeColor:"green", strokeWeight:6, strokeOpacity:0.5}    
+	);    
+	map.addOverlay(polyline);
+
+	var polyline = new BMap.Polyline([    
+	new BMap.Point(119.705911,30.24625),    
+	new BMap.Point(119.79507,30.15175)    
+	],    
+	{strokeColor:"red", strokeWeight:6, strokeOpacity:1}    
+	);    
+	map.addOverlay(polyline);
+
+function SquareOverlay(center, length, color)
+{    
+ this._center = center;    
+ this._length = length;    
+ this._color = color;    
+}    
+// 继承API的BMap.Overlay    
+SquareOverlay.prototype = new BMap.Overlay();
+// 实现初始化方法  
+SquareOverlay.prototype.initialize = function(map)
+{    
+	// 保存map对象实例   
+	this._map = map;        
+	// 创建div元素，作为自定义覆盖物的容器   
+	var div = document.createElement("div");    
+	div.style.position = "absolute";        
+	// 可以根据参数设置元素外观   
+	div.style.width = this._length + "px";    
+	div.style.height = this._length + "px";    
+	div.style.background = this._color;      
+	// 将div添加到覆盖物容器中   
+	map.getPanes().markerPane.appendChild(div);      
+	// 保存div实例   
+	this._div = div;      
+	// 需要将div元素作为方法的返回值，当调用该覆盖物的show、   
+	// hide方法，或者对覆盖物进行移除时，API都将操作此元素。   
+	return div;    
+}
+// 实现绘制方法   
+SquareOverlay.prototype.draw = function(){    
+// 根据地理坐标转换为像素坐标，并设置给容器    
+ var position = this._map.pointToOverlayPixel(this._center);    
+ this._div.style.left = position.x - this._length / 2 + "px";    
+ this._div.style.top = position.y - this._length / 2 + "px";    
+}
+
+// 添加自定义覆盖物   
+var mySquare = new SquareOverlay(map.getCenter(), 20, "red");    
+map.addOverlay(mySquare);
+
+
+var map = new BMap.Map("div1");          // 创建地图实例     
+var point = new BMap.Point(116.404, 39.915);  // 创建点坐标     
+map.centerAndZoom(point,15);                  // 初始化地图，设置中心点坐标和地图级别     
+var tilelayer = new BMap.TileLayer();         // 创建地图层实例    
+tilelayer.getTilesUrl=function(){             // 设置图块路径     
+          return "http://127.0.0.1/javascript/images/zx.jpg";      
+};      
+map.addTileLayer(tilelayer);                // 将图层添加到地图上
+
+</script>
+</body>
+</html>

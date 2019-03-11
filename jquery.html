@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+//通过javascript来操作dom
+		function opjs()
+		{
+	     //javascript方式
+		v = document.getElementById("user");
+		alert(v.value);
+        //又转换成jquery方式
+		$a = $(v);
+		alert($a.val());
+		} 
+//通过jquery来操作dom	
+		function opjq()
+		{
+	    //jquery方式
+		$v = $("#user");
+		alert($v.val());
+
+		//又转换成javascript方式
+		a = $v.get(0); //jquery转javascript 方式一
+		b = $v[0]; //jquery转javascript 方式二
+        alert(a.value);
+        alert(b.value);
+		}
+		function displayp(p)
+		{
+		   $t = $(p);
+           alert($t.html());
+		}
+window.onload=function()
+{
+	//document.getElementById("js").onclick=opjs;
+	//$("#jq").click(opjq);
+
+$("#jq").click( function(){ alert($("#user").val()); });
+
+$("#js").click(
+ function(){
+	 $("*").css("background","green");
+	 }
+ );
+ displayp("h1");
+}
+</script>
+</head>
+<body>
+  <p align="center">
+   <input type="text" value="zhang" id="user"/>
+  </p>
+  <hr width=80%>
+<input type="button" value="javascript" id="js"/><input type="button" value="jquery" id="jq"/>
+<h1>这是P里的内容</h1>
+</body>
+</html>

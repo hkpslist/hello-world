@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>json</title>
+<script type="text/javascript">
+  var json1 = {
+  "root":
+   [
+    {"province":"湖南","city":["长沙","株洲","湘潭"],"method":function(){alert('json');}},
+    {"province":"湖北","city":["武汉","荆门","襄阳"]}
+   ]
+};
+json1.root[0].method();
+document.write (json1.root[1].city[0]);
+</script>
+</head>
+<body>
+</body>
+</html>

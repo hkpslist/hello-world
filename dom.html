@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>DOM</title>
+
+ </head>
+ <body>
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+  <input type="text" name="good" />
+
+    <script>
+	 var obj = document.getElementsByName("good");
+	 for(var i=0;i<obj.length;i++)
+	    {
+			obj[i].onchange=function()
+			{
+				alert(this.value);
+			};
+		}
+  </script>
+ </body>
+</html>

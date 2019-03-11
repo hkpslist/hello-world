@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <link rel="stylesheet" href="../bootstrap/bootstrap/dist/css/bootstrap.min.css">
+    <title>XMLHTTPREQUEST</title>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand">XMLHTTPREQUEST</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a>xmlhttprequest 发送请求</a></li>
+                    <li><a>open</a></li>
+                    <li><a>method</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>new xmlhttprequest</a></li>
+                    <li><a>open</a></li>
+                    <li><a>method</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="page-header text-center">
+            <h2>XMLHTTPREQUST发送请求</h2>
+
+        </div>
+        <table class="table table-bordered table-hover table-striped">
+            <thead class="bg-primary">
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>INFO</th>
+                    <th>DEPARTMENT</th>
+                </tr>
+            </thead>
+            <tbody id="data_body">
+            </tbody>
+        </table>
+    </div>
+
+</body>
+<script type="text/javascript">
+    //创新XMLHttpRequest 对象 xmlhttp
+
+    window.onload = function() {
+        gg();
+        setInterval("gg()", 5000);
+    }
+
+    function gg() {
+        var xmlhttp;
+
+        if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+
+        xmlhttp.open("POST", "conn.php", true);
+        xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        //xmlhttp.send("b="+Math.random());
+        xmlhttp.send("b=0");
+        //监听httprequest返回值,并调用处理动作函数。
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                var data = JSON.parse(xmlhttp.response).data;
+                //document.getElementById("myDiv").innerHTML = xmlhttp.responseText.data;
+                var str = '';
+                for (var i = 0; i < data.length; i++) {
+                    str += '<tr>' +
+                        '<td>' + data[i].id + '</td>' +
+                        '<td>' +
+                        data[i].name + '</td>' +
+                        '<td>' + data[i].info + '</td>' +
+                        '<td>' + data[i].department + '</td>' +
+                        '</tr>';
+                }
+                document.getElementById("data_body").innerHTML = str;
+                xmlhttp = null;
+            }
+        }
+
+        //打开远程Ajax地址，并发送数据。可以发送到脚本文件与xml文件
+        //xmlhttp.open("GET","city.xml",true);
+        /*
+        xmlhttp.open("POST","ajax.php",true);
+        xmlhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        xmlhttp.send("b=Math.random()");
+        */
+    }
+    //处理动作函数
+    /*
+    function actions(e,x)
+    {
+    	document.getElementById(e).innerHTML=x.responseText;
+    	/*
+    	var str="";
+    	docxml = xmlhttp.responseXML;
+    	for(var i = 0;i<docxml.getElementsByTagName("province").length;i++)
+    	{
+    	  str=str+"<p>"+docxml.getElementsByTagName("province")[i].getAttribute("name")+"</p>";
+    	}
+    	document.getElementById("myDiv").innerHTML=str;
+    	
+    }*/
+
+</script>
+
+</html>

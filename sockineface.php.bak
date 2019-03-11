@@ -1,0 +1,122 @@
+<!--
+  发送sock请求
+-->
+<?php
+  /*
+    发送接口
+  */
+  interface proto{
+  function conn($url);
+  function get();
+  function post();
+  public function close();
+  }
+
+  /*
+    发送类
+  */
+  class Http implements proto
+  {
+  const CRLF = "\r\n"; //定义换行
+  protected $url=null;//请求URL
+  protected $response='';//返回内容
+  protected $fh=null;//连接sock
+  protected $version = "HTTP/1.1";//请求版本
+  protected $line=array();//请求行
+  protected $heade=array();//请求主机
+  protected $body=array();//请求内容
+
+  public function __construct($url,$type,$content=null)
+  {
+	  $this->conn($url);
+	  switch($type)
+	  {
+		  case 'GET':
+		  $this->get();
+		  break;
+		  case 'POST':
+          $this->post();
+          $this->setBody($content);
+		  break;
+		  default:
+		  echo "请输入请求类型";
+	  }
+	  //print_r (array_merge($this->line,$this->heade,array(''),$this->body,array('')));
+  }
+
+  //设置远程URL地址，并解析出端口，使用fsockopen连接远程服务器。
+  public function conn($url)
+  {
+	  $this->url=parse_url($url);
+	  $port = isset($this->url['port'])?$this->url['port']:"80";
+	  $this->fh = fsockopen($this->url['host'],$port);
+  }
+ //生成请求行（请求类型，请求地址，请求版本）
+  protected function setLine($method)
+  {
+    $this->line[0] = $method.' '.
+    $this->url['path'].' '.'HTTP/1.1';
+  }
+  //生成请求主机内容 (HOST:XXX)
+  protected function setHeade()
+  {
+    $this->heade[] = 'Host:'.' '.
+    $this->url['host'];
+  }
+
+  //生成请求内容(只有POST请求才有)
+  protected function setBody($content)
+  {
+	$this->body[0]="Content-Type: application/x-www-form-urlencoded";
+	$length= strlen($content);
+	$this->body[1]= 'Content-Length: '.$length;
+	$this->body[2]='';
+	$this->body[3]=$content;
+  }
+
+
+  //构造GET请求
+  public function get()
+  {
+	  $this->setLine("GET");
+	  $this->setHeade();
+  }
+   //构造POST请求
+  public function post()
+  {  
+	  $this->setLine("POST");
+	  $this->setHeade();
+  }
+  public function postok($content)
+  {
+   
+  }
+  //发送HTTP请求内容
+  public function request()
+  {
+	  
+	  $req=(strstr($this->line[0],'GET'))?array_merge($this->line,$this->heade,array(''),array('')):array_merge($this->line,$this->heade,$this->body,array('')); 
+	  $req = implode(self::CRLF,$req);
+	  //echo $req;
+	  
+      
+      fwrite($this->fh,$req);
+	  while(!feof($this->fh)){
+		  $this->response.= fgets($this->fh,512);  
+  }
+  //echo $this->response;
+  
+  $this->close();
+  }
+
+  public function close()
+  {
+	  fclose($this->fh);
+  }
+  }
+  $url="http://127.0.0.1/javascript/post.php";
+  //$http = new Http($url,'GET');
+  $http = new Http($url,'POST','a=8&ad=00');
+
+  $http->request();
+

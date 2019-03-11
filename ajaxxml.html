@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>Document</title>
+  <style type="text/css">
+  .div1,.div2
+  {
+   text-align:center;
+  }
+  </style>
+  <script type="text/javascript">
+    var xmlhttprequest;
+	var xmldoc;
+	//创建XmlHttpRequest对象
+	function getxmlhttprequest()
+	{
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+		xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	return xmlhttp;
+	}
+
+//监听服务端
+function listing(xmlhttp)
+{
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+		 xmldoc= xmlhttp.responseXML;
+		 //alert(xmldoc);
+		 displaypri(xmldoc);
+		}
+	}
+}
+
+
+//显示省份名称
+function displaypri(xd)
+{
+    var pris = xd.getElementsByTagName("province");
+	var father = document.getElementById("sf");
+
+	for(var i =0;i<pris.length;i++)
+	{
+		var val = pris[i].getAttribute("name");
+		var nodet = document.createTextNode(val);
+		var nodeo = document.createElement("option");
+		nodeo.setAttribute("value",val);
+		father.appendChild(nodeo);
+		nodeo.appendChild(nodet);
+	}
+
+}
+
+//打印城市
+function displaycity()
+{
+	var val = this.value;
+	var pris = xmldoc.getElementsByTagName("province");
+	var pri;
+	var str="<option value=''>请选择</option>"
+	for(var i=0;i<pris.length;i++)
+	{
+	  if(val == pris[i].getAttribute("name"))
+	  {
+	   pri=pris[i];
+	   break;
+	  }
+	}
+	var fa = pri.childNodes;
+	for(var j=0;j<fa.length;j++)
+	{
+	  var v = fa[j].firstChild.nodeValue;
+	  str=str+"<option value="+v+">"+v+"</option>";
+	}
+	document.getElementById("ds").innerHTML=str;
+}
+
+//onload 事件
+	window.onload=function()
+	{
+		xmlhttprequest = getxmlhttprequest();
+		listing(xmlhttprequest);
+		xmlhttprequest.open("POST","city.xml",true);
+		//xmlhttprequest.open("POST","ajaxxml.php",true);
+		xmlhttprequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xmlhttprequest.send();
+		document.getElementById("sf").onchange=displaycity;
+	}
+  </script>
+</head>
+<body>
+  <h1 align='center'>responseXML通过XML获取数据</h1>
+  <hr width=50%>
+ <div class="div1"><select name="sf" id="sf"><option value="">请选择</option>
+</select><select name="ds" id="ds"><option value="">请选择</option></select>
+</div>
+<p>
+<div class="div2">
+<h2>使用AJAX responseXML </h2>
+</div>
+<div>
+<p>
+   <ul>
+    <li>在window.onload事件里打印出省份</li>
+    <li>创建XMLHttpRequest对象</li>
+    <li>监听xmlhttprequest状态，并破获onreadystatechange事件，readyState=4，status=200</li>
+	<ul>
+	<li>打印出所有的省份</li>
+	</ul>
+    <li>xmlhttprequest.open("method","url","true")</li>
+    <li>xmlhttprequest.send()</li>
+    <li>增加省份下拉选项的onchange事件，显示对应的城市</li>
+   </ul>
+</p>
+<img src="./images/xml.png"></img>
+</div>
+</p>
+</body>
+</html>
